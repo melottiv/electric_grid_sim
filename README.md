@@ -1,21 +1,19 @@
-# electric_grid_sim
-Simulator of an electric grid using MonteCarlo sampling 
+
 # Electric Grid Simulator using Monte Carlo and Markov Chains  
-**MS2 Final Project**  
 **Virginia Melotti – 16.01.2025**
 
-## 🧠 Overview
+## Overview
 
 This MATLAB project simulates the behavior of an electrical network using **Markov Chain Monte Carlo (MCMC)** methods and **Monte Carlo simulation**. It evaluates the system’s safety under uncertainty, estimates transition probabilities between system states, and analyzes statistical properties of the generated data.
 
 ---
 
-## 🧩 Problem 1 – MCMC Random Number Generator
+## Problem 1 – MCMC Random Number Generator
 
-### 🎯 Objective
+### Objective
 Generate samples from an empirical distribution using MCMC. Verify that the samples are identically and independently distributed via autocorrelation and cross-correlation analysis.
 
-### 📂 Files
+### Files
 - `MCMC.m`  
   Loads the distribution, runs the MCMC chain with burn-in and thinning, saves the samples, and checks sample quality.
 
@@ -27,23 +25,23 @@ Generate samples from an empirical distribution using MCMC. Verify that the samp
 - `PointsToGrid.m`  
   Discretizes points into a 6×6×6 grid for visual comparison with the input distribution.
 
-### ✅ Results
+### Results
 - Autocorrelation < 0.1
 - Cross-correlation has sharp central peak
 - Samples closely match the original distribution
 
 ---
 
-## ⚡ Problem 2 – Monte Carlo Simulation of Grid Safety
+## Problem 2 – Monte Carlo Simulation of Grid Safety
 
-### 🎯 Objective
+### Objective
 Estimate the **expected time** in which the voltage at node 2 is **outside safe limits**, when input parameters follow the empirical MCMC distribution.
 
 \[
 \mathbb{E} \left[ T(X_2, P_s, T_m) \right] \text{ where } T = \int I(|V_2| < V_m \lor |V_2| > V_p \lor Q_2 < Q_m \lor Q_2 > Q_p)\,dt
 \]
 
-### 📂 Files
+### Files
 - `runSim.m`  
   Runs simulations and stores events and timestamps.
 
@@ -58,20 +56,20 @@ Estimate the **expected time** in which the voltage at node 2 is **outside safe 
 - `Bootstrap.m`  
   Applies resampling to estimate error margins.
 
-### ✅ Results
+### Results
 - Over 15,000 samples simulated
 - Confidence interval within ±0.05s (95% confidence)
 
 ---
 
-## 🔁 Problem 3 – Transition Probabilities & Waiting Times
+## Problem 3 – Transition Probabilities & Waiting Times
 
-### 🎯 Objective
+### Objective
 Estimate:
 - Transition probabilities between states (jump chain)
 - Average waiting time in each state
 
-### 📂 Files
+### Files
 - `calculateTransitionProbabilities.m`  
   Loads event logs, extracts sequences and timings, computes:
   - Transition matrix
@@ -82,9 +80,9 @@ Estimate:
 
 ---
 
-## ⏱ Problem 4 – Hitting Time Estimation
+## Problem 4 – Hitting Time Estimation
 
-### 🎯 Objective
+### Objective
 Estimate the **expected time to return** to state `3V0` from other states (e.g., `3VL`) using **first-step conditioning**:
 
 ```matlab
