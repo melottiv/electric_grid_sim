@@ -37,9 +37,12 @@ Generate samples from an empirical distribution using MCMC. Verify that the samp
 ### Objective
 Estimate the **expected time** in which the voltage at node 2 is **outside safe limits**, when input parameters follow the empirical MCMC distribution.
 
-\[
-\mathbb{E} \left[ T(X_2, P_s, T_m) \right] \text{ where } T = \int I(|V_2| < V_m \lor |V_2| > V_p \lor Q_2 < Q_m \lor Q_2 > Q_p)\,dt
-\]
+We want to compute:
+
+> Expected abnormal time T(X₂, Pₛ, Tₘ),  
+> where abnormality means:
+> - |V₂| < Vₘ or |V₂| > Vₚ  
+> - Q₂ < Qₘ or Q₂ > Qₚ  
 
 ### Files
 - `runSim.m`  
